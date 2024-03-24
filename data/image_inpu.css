@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* background */
+header{
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url(../data/new.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100vw;
+}
+.logo{
+    font-size: 1.5rem;
+    font-family: cursive;
+    color: #fff;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.container {
+    margin-top: 10vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+#file_upload{
+    height: 300px;
+    width: 500px;
+    background-color: #c2c2c22f;
+    border: 4px dotted #c2c2c2;
+    border-spacing: 10px;
+    border-radius: 10px;
+    color: #c2c2c2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+#file_upload:active{
+    background-color: #c2c2c2;
+    color: #fff;
+    display: flex;
+}
+#file{
+    display: none;
+}
+#sbm-btn{
+    width: max-content;
+    padding: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #c2c2c2;
+    margin: 20px;
+    color: #fff;
+}
+#sbm-btn:active{
+    background-color: #c2c2c2;
+}
+
+
+/* typing text */
+.wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .static-txt{
+    color: #fff;
+    font-size: 60px;
+    font-weight: 400;
+  }
+  .wrapper .dynamic-txts{
+    margin-left: 100px;
+    height: 90px;
+    line-height: 90px;
+    overflow: hidden;
+  }
+  .dynamic-txts li{
+    list-style: none;
+    color: #FC6D6D;
+    font-size: 60px;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+  }
+  .dynamic-txts li span{
+    position: relative;
+    margin: 5px 0;
+    line-height: 90px;
+  }
+  .dynamic-txts li span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      /* background: #343F4F; */;
+      background:rgba(0,0,0,0.8);
+      border-left: 2px solid #FC6D6D;
+      /* Change the animation duration to control typing and deleting speed */
+      animation: typing 4s steps(20) forwards, deleting 4s steps(20) 3s infinite; /* Change 3s to desired duration */
+  }
+
+  @keyframes typing {
+      0% {
+          width: 0;
+          left: 100%; /* Start from the left */
+      }
+      40%, 60% {
+          width: 100%;
+          left: 0; /* Move to the right */
+      }
+      100% {
+          width: 100%;
+          left: 0; /* Stay at the right */
+      }
+  }
+
+  @keyframes deleting {
+      0% {
+          width: 100%;
+          left: 0; /* Start from the right */
+      }
+      40%, 60% {
+          width: 0;
+          left: 100%; /* Move to the left */
+      }
+      100% {
+          width: 0;
+          left: 100%; /* Stay at the left */
+      }
+  }
+
+/* message */
+.massege{
+    width: max-content;
+    /* border: 2px solid white; */
+    margin: auto;
+
+}

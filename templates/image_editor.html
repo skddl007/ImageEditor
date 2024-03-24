@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editing</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='image_editor.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <div class="nev">
+        <div class="logo">PhotoEditor</div>
+        <div class="unduredu">
+            <div id="undu"><button type="submit"><i class="fa-solid fa-rotate-left"></i></button></div>
+            <div id="display-box">0/</div>
+            <div id="redu"><button type="submit"><i class="fa-solid fa-rotate-right"></i></button></div>
+            
+        </div>
+    </div>
+    <div class="main">
+        
+        <!-- box-1 -->
+        <div class="box-1">
+            <!-- filter-effect -->
+            <h2 class="box-1-cls">filters</h2>
+            <form action="/editor" method="post">
+                <input type='hidden' name="effect" value='filter'>
+                <div class="effect-class">
+                    <button value="SMOOTH_MORE" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='SMOOTH_MORE.png') }}" alt="Smooth More Image"></button>
+                    <button value="SMOOTH" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='SMOOTH.png') }}" alt="Smooth Image"></button>
+                    <button value="CONTOUR" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='CONTOUR.png') }}" alt="Contour Image"></button>
+                    <button value="EDGE_ENHANCE" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='EDGE_ENHANCE.png') }}" alt="Edge Enhance Image"></button>
+                    <button value="EDGE_ENHANCE_MORE" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='EDGE_ENHANCE_MORE.png') }}" alt="Edge Enhance More Image"></button>
+                    <button value="EMBOSS" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='EMBOSS.png') }}" alt="Emboss Image"></button>
+                    <button value="FIND_EDGES" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='FIND_EDGES.png') }}" alt="Find Edges Image"></button>
+                    <button value="SHARPEN" name="effect_option" class="e-btn"><img src="{{ url_for('static', filename='SHARPEN.png') }}" alt="Sharpen Image"></button>
+                </div>
+            </form>
+        </div>
+        <!-- box-2 -->
+        <div class="box-2">
+            <div class="image">
+                    {% if image_data %}
+                        <img src="data:image/jpeg;base64,{{ image_data }}" alt="Processed Image" id="main_img">
+                    {% endif %}
+            </div>
+        </div>
+
+        <!-- box-3 -->
+        <div class="box-3">
+            <table>
+                <thead>
+                    <th><h2 class="box-1-cls">User Console</h2></th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="td-1">
+                            <form action="/editor" method="post">
+                                <input type="hidden" name="effect" value="rotate">
+                                <!-- <label for="rotate">Rotate</label>
+                                <br> -->
+                                <input type="number" name="rotate" id="rotate">
+                                <button type="submit" class="stb-btn">Rotate</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="td-2">
+                            <!-- blur -->
+                            <form action="/editor" method="post">
+                                <input type='hidden' name="effect" value='blur'>
+                                <!-- <label for="blur">Blur:</label> -->
+                                0
+                                <input type="range" name="blur" min="0" max="100" value="{{ blue_amount }}" id="blur">100
+                                <input type="submit" class="stb-btn"><br>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="td-3">
+                            <!-- Crop form -->
+                            <form action="/editor" method="post">
+                                <input type='hidden' name="effect" value='crop'>
+                                <label for="x-coordinate">X:</label>
+                                <input type="number" name="x" id="x-coordinate" class="coordinate" min="0">
+                                <label for="y-coordinate">Y:</label>
+                                <input type="number" name="y" id="y-coordinate" class="coordinate" min="0">
+                                <label for="crop_size">Crop Size:</label>
+                                <input type="number" name="crop_size" id="crop_size" value="crop" class="coordinate" min="0">
+                                <button type="submit" class="stb-btn">Crop</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="td-4">
+                            <!-- Faces detection form -->
+                            <form action="\editor" method="post">
+                                <input type="hidden" name="effect" value="detect_faces">
+                                <button type="submit">Faces Detect</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td id="td-4">
+                            <!-- Text Extraction from image -->
+                            <form action="\editor" method="post">
+                                <input type="hidden" name="effect" value="extract_text">
+                                <button type="submit">Extracted Text</button>
+                            </form>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul class="flash">
+                                        {% for message in messages %}
+                                            <li>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <button onclick="cropImage()">Crop Image</button>
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+        const canvas = document.getElementById('main_img');
+        const ctx = canvas.getContext('2d');
+        let img = new Image();
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(event) {
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+                };
+                img.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        let startX, startY, width, height;
+        let isDrawing = false;
+
+        canvas.addEventListener('mousedown', function(e) {
+            startX = e.offsetX;
+            startY = e.offsetY;
+            isDrawing = true;
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (!isDrawing) return;
+            width = e.offsetX - startX;
+            height = e.offsetY - startY;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+            ctx.strokeStyle = 'red';
+            ctx.strokeRect(startX, startY, width, height);
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            isDrawing = false;
+        });
+
+        function cropImage() {
+            const croppedCanvas = document.createElement('canvas');
+            croppedCanvas.width = width;
+            croppedCanvas.height = height;
+            const croppedCtx = croppedCanvas.getContext('2d');
+            croppedCtx.drawImage(canvas, startX, startY, width, height, 0, 0, width, height);
+
+            // Clear the original canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Set canvas dimensions to cropped image dimensions
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw the cropped image onto the canvas
+            ctx.drawImage(croppedCanvas, 0, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='image_inpu.css')}}">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">PhotoEditor</div>
+        </div>
+        <div class="massege">
+            <div class="wrapper">
+                <div class="static-txt">Take your photography</div>
+                <ul class="dynamic-txts">
+                    <li><span>to the next level</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <!-- <h1 style="color: #fff;">Image Upload</h1> -->
+            <form action="/" method="post" enctype="multipart/form-data">
+                <label for="file" id="file_upload" required>Choose file</label>
+                <input type="file" name="file" accept="image/*" id="file" required>
+                <button type="submit" id="sbm-btn">Upload</button>
+            </form>
+        </div>
+    </header>
+</body>
+</html>
