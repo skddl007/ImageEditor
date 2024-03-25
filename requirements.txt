@@ -1,4 +1,4 @@
-Flask==2.1.4
+Flask==3.0.2
 Pillow==8.4.0
 opencv-python-headless==4.5.3.56
 pytesseract==0.3.8
