@@ -6,9 +6,17 @@ import os
 import cv2
 import numpy as np
 import pytesseract
+from ctypes import pythonapi, py_object
 
 app = Flask(__name__, static_folder='data')
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+# Define the _Py_HashDouble function using the provided example
+def custom_Py_HashDouble(obj, value):
+    hash_func = pythonapi._Py_HashDouble
+    hash_func.restype = py_object
+    return hash_func(obj, value)
+
 
 
 # stack class
