@@ -4,5 +4,4 @@ opencv-python
 pytesseract
 setuptools
 numpy
-libatlas-base-dev
 gunicorn
