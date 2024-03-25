@@ -2,6 +2,6 @@ Flask==3.0.2
 Pillow==8.4.0
 opencv-python-headless==4.5.4.58
 pytesseract==0.3.8
-numpy==1.26.0
+numpy==1.21.1
 libatlas-base-dev
 gunicorn
