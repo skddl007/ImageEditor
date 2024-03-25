@@ -1,7 +1,8 @@
-Flask==2.0.2
-Pillow==8.3.2
-opencv-python==4.5.3.56
-pytesseract==0.3.8
-setuptools==60.0.0
+Flask
+Pillow
+opencv-python
+pytesseract
+setuptools
+numpy
 libatlas-base-dev
 gunicorn
