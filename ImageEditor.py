@@ -4,7 +4,7 @@ from io import BytesIO
 import base64
 import os
 import cv2
-# import numpy as np
+import numpy as np
 import pytesseract
 from ctypes import pythonapi, py_object
 
@@ -48,15 +48,15 @@ def blur(main_image,blur_amount):
     image = main_image.filter(ImageFilter.BoxBlur(blur_amount))
     return image
 
-# def detect_faces(main_image):
-#     img = cv2.cvtColor(np.array(main_image), cv2.COLOR_RGB2BGR)  # Convert PIL Image to OpenCV format
-#     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-#     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
-#     for (x, y, w, h) in faces:
-#         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
-#     pil_image = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # Convert back to PIL Image
-#     return pil_image
+def detect_faces(main_image):
+    img = cv2.cvtColor(np.array(main_image), cv2.COLOR_RGB2BGR)  # Convert PIL Image to OpenCV format
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+    for (x, y, w, h) in faces:
+        cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    pil_image = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))  # Convert back to PIL Image
+    return pil_image
 
 def extract_text_from_image(image_data):
     try:
@@ -140,8 +140,8 @@ def editor():
                         filter_obj = lst_filter[lst.index(filter_name)]
                         image = main_image.filter(filter_obj)
 
-                # elif effect == 'detect_faces':
-                #     image = detect_faces(main_image)
+                elif effect == 'detect_faces':
+                    image = detect_faces(main_image)
 
                 elif effect == 'extract_text':
                     text = extract_text_from_image(base64.b64decode(image_data))
