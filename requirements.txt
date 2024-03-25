@@ -1,7 +1,6 @@
-Flask==2.1.0
+Flask==2.1.4
 Pillow==8.4.0
 opencv-python-headless==4.5.3.56
 pytesseract==0.3.8
-numpy==1.24.0
+numpy==1.21.3
 libatlas-base-dev
-
