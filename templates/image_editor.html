@@ -10,11 +10,22 @@
 <body>
     <div class="nev">
         <div class="logo">PhotoEditor</div>
-        <div class="unduredu">
-            <div id="undu"><button type="submit"><i class="fa-solid fa-rotate-left"></i></button></div>
-            <div id="display-box">0/</div>
-            <div id="redu"><button type="submit"><i class="fa-solid fa-rotate-right"></i></button></div>
-            
+        <form action="/editor" method="post">
+            <div class="unduredu">
+                <button type="submit" name="effect" value="undu"><i class="fa-solid fa-rotate-left"></i></button>
+                <div id="display-box">{{unducount}}/{{total}}</div>
+                <button type="submit" name="effect" value="redu"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </form>
+                
+        <div class="dawonlod">
+            <form action="\editor" method="post">
+                <button type="submit" id="r-set" class="btn-d" name="effect" value="reset">Reset</button>
+            </form>
+            <form action="{{ url_for('download') }}" method="get">
+                <input type="hidden" name="filename" value="edited_image.jpg">
+                <button type="submit" id="d-lod" class="btn-d">Download</button>
+            </form>
         </div>
     </div>
     <div class="main">
@@ -81,26 +92,25 @@
                             <!-- Crop form -->
                             <form action="/editor" method="post">
                                 <input type='hidden' name="effect" value='crop'>
-                                <label for="x-coordinate">X:</label>
+                                <label for="x-coordinate">width:</label>
                                 <input type="number" name="x" id="x-coordinate" class="coordinate" min="0">
-                                <label for="y-coordinate">Y:</label>
+                                <label for="y-coordinate">Height:</label>
                                 <input type="number" name="y" id="y-coordinate" class="coordinate" min="0">
                                 <label for="crop_size">Crop Size:</label>
-                                <input type="number" name="crop_size" id="crop_size" value="crop" class="coordinate" min="0">
+                                <input type="number" name="crop_size" id="crop_size" value="crop" class="coordinate" min="0"><br><br>
                                 <button type="submit" class="stb-btn">Crop</button>
                             </form>
                         </td>
                     </tr>
                     <tr>
                         <td id="td-4">
-                            <!-- Faces detection form -->
+                            <!-- Object detection form -->
                             <form action="\editor" method="post">
                                 <input type="hidden" name="effect" value="detect_faces">
                                 <button type="submit">Faces Detect</button>
                             </form>
                         </td>
                     </tr>
-                    <br>
                     <tr>
                         <td id="td-4">
                             <!-- Text Extraction from image -->
@@ -119,80 +129,8 @@
                             {% endwith %}
                         </td>
                     </tr>
-                    
                 </tbody>
             </table>
-            <button onclick="cropImage()">Crop Image</button>
     </div>
-
-
-
-
-
-
-
-
-    <script>
-        const canvas = document.getElementById('main_img');
-        const ctx = canvas.getContext('2d');
-        let img = new Image();
-
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(event) {
-                img.onload = function() {
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
-                };
-                img.src = event.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        });
-
-        let startX, startY, width, height;
-        let isDrawing = false;
-
-        canvas.addEventListener('mousedown', function(e) {
-            startX = e.offsetX;
-            startY = e.offsetY;
-            isDrawing = true;
-        });
-
-        canvas.addEventListener('mousemove', function(e) {
-            if (!isDrawing) return;
-            width = e.offsetX - startX;
-            height = e.offsetY - startY;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-            ctx.strokeStyle = 'red';
-            ctx.strokeRect(startX, startY, width, height);
-        });
-
-        canvas.addEventListener('mouseup', function() {
-            isDrawing = false;
-        });
-
-        function cropImage() {
-            const croppedCanvas = document.createElement('canvas');
-            croppedCanvas.width = width;
-            croppedCanvas.height = height;
-            const croppedCtx = croppedCanvas.getContext('2d');
-            croppedCtx.drawImage(canvas, startX, startY, width, height, 0, 0, width, height);
-
-            // Clear the original canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Set canvas dimensions to cropped image dimensions
-            canvas.width = width;
-            canvas.height = height;
-            
-            // Draw the cropped image onto the canvas
-            ctx.drawImage(croppedCanvas, 0, 0);
-        }
-    </script>
 </body>
 </html>
