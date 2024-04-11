@@ -1,1 +1,1 @@
-# DHP1
+# ImageEditor
