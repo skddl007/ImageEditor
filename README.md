@@ -1,9 +1,5 @@
-Here's the updated README file with the GitHub profile links for the contributors:
-
----
-
 # ImageEditor
-
+---
 ImageEditor is a Flask-based web application that allows users to upload and edit images with various features such as filters, cropping, blur, rotation, face detection, text extraction, and an undo-redo system. Users can also download their edited images.
 
 ## Features
@@ -31,9 +27,9 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 
 ## Usage
 
-1. Clone the repository: `git clone https://github.com/yourusername/ImageEditor.git`
+1. Clone the repository: `https://github.com/skddl007/ImageEditor.git`
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run the Flask application: `python app.py`
+3. Run the Flask application: `python ImageEditor.py`
 4. Access the web interface in your browser: `http://localhost:5000`
 
 ## Note
@@ -42,8 +38,6 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 - Make sure to handle user-uploaded images securely to prevent any vulnerabilities.
 
 ---
-
-Replace "yourusername" with your actual GitHub username. Let me know if there's anything else you'd like to add or modify!
 
 1.Landing page:(https://github.com/skddl007/ImageEditor/assets/143414044/e5a55cec-5da3-48fb-a236-77412a681db1)
 2.Console:(https://github.com/skddl007/ImageEditor/assets/143414044/cea90bb0-db99-44dd-a519-81cb41718710)
