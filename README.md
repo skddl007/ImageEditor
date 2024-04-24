@@ -32,11 +32,6 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 3. Run the Flask application: `python ImageEditor.py`
 4. Access the web interface in your browser: `http://localhost:5000`
 
-## Note
-
-- This project is for educational purposes and may not be suitable for production use.
-- Make sure to handle user-uploaded images securely to prevent any vulnerabilities.
-
 ---
 
 1.Landing page:(https://github.com/skddl007/ImageEditor/assets/143414044/e5a55cec-5da3-48fb-a236-77412a681db1)  
