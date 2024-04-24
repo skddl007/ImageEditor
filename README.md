@@ -1,5 +1,5 @@
 # ImageEditor
----
+
 ImageEditor is a Flask-based web application that allows users to upload and edit images with various features such as filters, cropping, blur, rotation, face detection, text extraction, and an undo-redo system. Users can also download their edited images.
 
 ## Features
