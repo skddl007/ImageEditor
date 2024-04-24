@@ -13,17 +13,17 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 
 ## Technologies Used
 
+- Flask: Web framework for Python
 - Pillow: Image processing library
 - cv2: OpenCV library for computer vision
 - pytesseract: OCR (Optical Character Recognition) library
 - tempfile: Temporary file management
-- Flask: Web framework for Python
 - base64: Encoding and decoding images
 
 ## Contributors
 
 - [Rajat Malviya](https://github.com/rajat-malvi)
-- [Sundeep Kumar](https://github.com/sundeepkumar)
+- [Sundeep Kumar](https://github.com/skddl007)
 
 ## Usage
 
