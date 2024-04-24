@@ -1,4 +1,4 @@
-Here's a basic template for your README file for the ImageEditor project:
+Here's the updated README file with the GitHub profile links for the contributors:
 
 ---
 
@@ -24,6 +24,11 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 - Flask: Web framework for Python
 - base64: Encoding and decoding images
 
+## Contributors
+
+- [Rajat Malviya]([https://github.com/rajatmalviya](https://github.com/rajat-malvi))
+- [Sundeep Kumar](https://github.com/sundeepkumar)
+
 ## Usage
 
 1. Clone the repository: `git clone https://github.com/yourusername/ImageEditor.git`
@@ -37,6 +42,8 @@ ImageEditor is a Flask-based web application that allows users to upload and edi
 - Make sure to handle user-uploaded images securely to prevent any vulnerabilities.
 
 ---
+
+Replace "yourusername" with your actual GitHub username. Let me know if there's anything else you'd like to add or modify!
 
 1.Landing page:(https://github.com/skddl007/ImageEditor/assets/143414044/e5a55cec-5da3-48fb-a236-77412a681db1)
 2.Console:(https://github.com/skddl007/ImageEditor/assets/143414044/cea90bb0-db99-44dd-a519-81cb41718710)
